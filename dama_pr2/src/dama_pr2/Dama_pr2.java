@@ -1,12 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package dama_pr2;
 
 /**
  *
- * @author Misa
+ * @author Michal Herrman
+ * Date: 20.2.2013
  */
 public class Dama_pr2 {
 
