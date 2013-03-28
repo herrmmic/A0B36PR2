@@ -15,8 +15,8 @@ import javax.swing.*;
 public class Okno1 extends JFrame{
     
     private JButton proVyber;
-    private JLabel txVyber0;
-    private JLabel txVyber = new javax.swing.JLabel();;
+    private JLabel txVyber;
+    private JRadioButton rbVyber;
     
     public Okno1(){
         super();
@@ -42,6 +42,12 @@ public class Okno1 extends JFrame{
         this.txVyber.setBounds(120, 50, 600, 70);
         txVyber.setFont(new Font("Serif", Font.BOLD, 48));
         this.add(this.txVyber);
+    }
+    
+    public void radioButton() {
+        this.rbVyber = new JRadioButton("Proti PC");
+        this.rbVyber.setBounds(250, 150, 100, 50);
+        this.add(this.rbVyber);
     }
 }
 
