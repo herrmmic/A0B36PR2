@@ -4,10 +4,20 @@
  */
 package damapr2;
 
+import java.awt.Color;
+
 /**
  *
  * @author Misa
  */
 public class Hrac {
+    
+    String jmeno = "";
+    Color barva;
+    
+    public  Hrac (String jm, Color br){
+        this.jmeno = jm;
+        this.barva = br;
+    }
     
 }
