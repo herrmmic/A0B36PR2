@@ -8,6 +8,11 @@ package damapr2;
  *
  * @author Misa
  */
-public class Kamen {
+public class Kamen extends Policko{
+
+    public Kamen() {
+        super();
+    }
+    
     
 }

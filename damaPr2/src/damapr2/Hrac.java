@@ -14,6 +14,7 @@ public class Hrac {
     
     String jmeno = "";
     Color barva;
+    Kamen[]kameny;
     
     public  Hrac (String jm, Color br){
         this.jmeno = jm;

@@ -8,6 +8,12 @@ package damapr2;
  *
  * @author Misa
  */
-public class Dama {
+public class Dama extends Kamen {
+
+    public Dama() {
+        super();
+        
+    }
+    
     
 }

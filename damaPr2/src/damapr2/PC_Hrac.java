@@ -4,10 +4,17 @@
  */
 package damapr2;
 
+import java.awt.Color;
+
 /**
  *
  * @author Misa
  */
-public class PC_Hrac {
+public class PC_Hrac extends Hrac {
+
+    public PC_Hrac(String jm, Color br) {
+        super(jm, br);
+    }
+   
     
 }
