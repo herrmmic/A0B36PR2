@@ -211,6 +211,7 @@ public class Menu extends JFrame{
                    break;
                       
                   case "sp": 
+                      
                      hraN = new Hra(hrac1.getText(),hrac2.getText(),vyberB.getSelectedItem().toString(),vyberHry);
                      vytvorS();
                      hraN.hrPol(polHry);
@@ -221,18 +222,15 @@ public class Menu extends JFrame{
           }
             
         }
-      class ObsluhaTl implements ActionListener {
-            private int x;
-            private int y;
+      class ObsluhaPol implements ActionListener {
+            private Policko pol;
             
-            public ObsluhaTl(int x, int y) {
-                this.x = x;
-                this.y = y;
+            public ObsluhaPol(Policko p) {
+                this.pol = p;
             }
              
              public void actionPerformed(ActionEvent e) {
-                 //hrac1.setText(Integer.toString(x)+";"+Integer.toString(y));
-                 
+                 hraN.klikNaTl(this.pol);
              } 
           }
             
@@ -248,7 +246,7 @@ public class Menu extends JFrame{
 
                 for (int i = 0; i < (this.x); i++)
                 {
-                   Policko pol = new Policko();
+                   Policko pol = new Policko(i,q);
                  
 
            
@@ -271,14 +269,12 @@ public class Menu extends JFrame{
             if((this.index%8) == 0) {
             this.pom = !this.pom;
             }
-            pol.setXova(i);
-            pol.setXova(y);
             this.polHry[i][q] = pol;
             //přidání do labelu
             this.kontejner.add(pol);
             setContentPane(this.kontejner);
             //pridani akce - co bude po kliknuti tlacitko delat
-            this.polHry[i][q].addActionListener(new ObsluhaTl(i,q));
+            this.polHry[i][q].addActionListener(new ObsluhaPol(pol));
            
         }
      }
@@ -290,7 +286,7 @@ public class Menu extends JFrame{
            kontejner.repaint(); 
            kontejner.setBackground(Color.getHSBColor(30, 50, 20));
            
-           this.txVyber = new JLabel("Hráč:"+this.hrac1.getText());
+           this.txVyber = new JLabel("Hráč:"+hraN.getHrac1().getJmeno());
            this.txVyber.setBounds(10, 10, 150, 30);
            this.txVyber.setFont(new Font("Serif", Font.CENTER_BASELINE, 18));
            this.kontejner.add(this.txVyber);
@@ -306,7 +302,7 @@ public class Menu extends JFrame{
            this.hrac1.setEditable(false);
            this.kontejner.add(this.hrac1);
            
-           this.txVyber = new JLabel("Hráč:"+this.hrac2.getText());
+           this.txVyber = new JLabel("Hráč:"+hraN.getHrac2().getJmeno());
            this.txVyber.setBounds(10, 500, 150, 30);
            this.txVyber.setFont(new Font("Serif", Font.CENTER_BASELINE, 18));
            this.kontejner.add(this.txVyber);

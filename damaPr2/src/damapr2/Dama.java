@@ -10,8 +10,8 @@ package damapr2;
  */
 public class Dama extends Kamen {
 
-    public Dama() {
-        super();
+    public Dama(int x, int y, Hrac koho) {
+        super(x,y, koho);
         
     }
     

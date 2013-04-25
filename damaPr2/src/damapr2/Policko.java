@@ -12,13 +12,15 @@ import javax.swing.JButton;
  * @author Misa
  */
 public class Policko extends JButton{
-        Color barva;
-        int xova;
-        int yova;
+        private Color barva;
+        private int xova;
+        private int yova;
         
         
-        public Policko() {
+        public Policko(int x, int y) {
             super();
+            this.xova = x;
+            this.yova = y;
         }
 
         public Color getBarva() {

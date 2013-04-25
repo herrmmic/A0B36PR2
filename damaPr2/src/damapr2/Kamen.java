@@ -10,9 +10,14 @@ package damapr2;
  */
 public class Kamen extends Policko{
 
-    public Kamen() {
-        super();
+    private Hrac koho;
+    public Kamen(int x, int y, Hrac koho) {
+        super(x,y);
+        this.koho = koho;
+        this.setBarva(koho.getBarva());
     }
+
+    
     
     
 }
