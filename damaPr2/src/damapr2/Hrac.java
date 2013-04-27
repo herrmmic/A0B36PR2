@@ -14,11 +14,12 @@ public class Hrac {
     
     private String jmeno = "";
     private Color barva;
-    private Kamen[]kameny;
+    private int kameny;
     
     public  Hrac (String jm, Color br){
         this.jmeno = jm;
         this.barva = br;
+        this.kameny = 8;
     }
 
     public String getJmeno() {
@@ -37,12 +38,12 @@ public class Hrac {
         this.barva = barva;
     }
 
-    public Kamen[] getKameny() {
+    public int getKameny() {
         return kameny;
     }
 
-    public void setKameny(Kamen[] kameny) {
-        this.kameny = kameny;
+    public void setKameny(int k) {
+        this.kameny = k;
     }
     
 }

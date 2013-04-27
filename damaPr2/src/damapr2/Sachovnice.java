@@ -64,15 +64,13 @@ public class Sachovnice {
     public void  obarvi(Policko aktPol, Kamen predK) {
         this.poleP[predK.getXova()][predK.getYova()].setBarva(Color.WHITE);
         this.poleP[aktPol.getXova()][aktPol.getYova()].setBarva(predK.getBarva());
-        this.poleK[aktPol.getXova()][aktPol.getYova()]=predK;
-        this.poleK[predK.getXova()][predK.getYova()]= null;
-        this.poleK[aktPol.getXova()][aktPol.getYova()].setXova(aktPol.getXova());
-        this.poleK[aktPol.getXova()][aktPol.getYova()].setYova(aktPol.getYova());
-        
-        
+        this.poleK[predK.getXova()][predK.getYova()].posunSe(this.poleK , aktPol);  
     }
 
-   
+   public void odeber (int x, int y) {
+       this.poleK[x][y]=null;
+       this.poleP[x][y].setBarva(Color.WHITE);
+   }
     
     
 }
