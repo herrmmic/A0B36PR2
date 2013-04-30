@@ -46,4 +46,7 @@ public class Hrac {
         this.kameny = k;
     }
     
+    public void odeber() {
+        this.kameny -=1;
+    }
 }

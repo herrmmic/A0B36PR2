@@ -33,11 +33,11 @@ public class Sachovnice {
            
                 for (; x < 8; x+=2) {
                     if(i<2){
-                        poleK[x][i] = new Kamen(x,i,hr1);
+                        poleK[x][i] = new Kamen(x,i,hr1,false);
                         poleP[x][i].setBarva(hr1.getBarva());
                     }
                     else {
-                        poleK[x][i] = new Kamen(x,i,hr2);
+                        poleK[x][i] = new Kamen(x,i,hr2,false);
                         poleP[x][i].setBarva(hr2.getBarva());
                     }
                 }
@@ -68,6 +68,7 @@ public class Sachovnice {
     }
 
    public void odeber (int x, int y) {
+       this.poleK[x][y].getKoho().odeber();
        this.poleK[x][y]=null;
        this.poleP[x][y].setBarva(Color.WHITE);
    }

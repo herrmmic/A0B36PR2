@@ -4,13 +4,13 @@
  */
 package damapr2;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -29,13 +31,11 @@ import javax.swing.*;
 public class Menu extends JFrame{
     
     private Container kontejner;
-    private JLabel txVyber;
-    private JPanel kont2;
+    private JLabel txVyber,txVyber1,txVyber2;
     private JButton[] rbVyber = new JButton[5];
-    private JTextField hrac1; 
-    private JTextField hrac2; 
+    private JTextField hrac1,hrac2; 
     private JComboBox vyberB;
-    private JComboBox vyberB2;
+    private JMenuBar vyberC;
     
     private String vyberHry = ""; // typ hry true s PC, false s druhym hracem
     private Hra hraN; 
@@ -49,7 +49,7 @@ public class Menu extends JFrame{
     
     public Menu() throws IOException{
         super();
-        this.setBounds(200, 200, 600, 600);
+        this.setBounds(200, 200, 600, 620);
         this.setTitle("Dáma");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocation(100,100);
@@ -70,6 +70,23 @@ public class Menu extends JFrame{
         this.txVyber.setFont(new Font("Serif", Font.ITALIC, 88));
         this.kontejner.add(this.txVyber);
         
+        this.vyberC = new JMenuBar();
+        setJMenuBar(this.vyberC);
+        JMenu fileMenu = new JMenu("File");
+        JMenu napMenu = new JMenu("Nápověda");
+        this.vyberC.add(fileMenu);
+        this.vyberC.add(napMenu);
+       
+        JMenuItem menu = new JMenuItem("Menu");
+        JMenuItem uloz = new JMenuItem("Ulož");
+        JMenuItem kon = new JMenuItem("Konec");
+        
+        fileMenu.add(menu);
+        fileMenu.add(uloz);
+        fileMenu.add(kon);
+        menu.addActionListener(new Obsluha("me"));
+        uloz.addActionListener(new Obsluha("ul"));
+        kon.addActionListener(new Obsluha("ko"));
         volba();
         
     }
@@ -215,8 +232,21 @@ public class Menu extends JFrame{
                      hraN = new Hra(hrac1.getText(),hrac2.getText(),vyberB.getSelectedItem().toString(),vyberHry);
                      vytvorS();
                      hraN.hrPol(polHry);
-                     break;  
+                     aktText();
+                     oznac();
+                     break; 
+                      
+                   case "ul": 
+                       if(hraN!=null) {
+                           hraN.ulozDat("");
+                       }
+                   break;    
+                      
                     
+                   case "ko": 
+                      dispose();
+                      break;   
+                      
                 }
                 
           }
@@ -231,9 +261,27 @@ public class Menu extends JFrame{
              
              public void actionPerformed(ActionEvent e) {
                  hraN.klikNaTl(this.pol);
+                 aktText();
+                 oznac();
              } 
           }
-            
+      
+      public void aktText() {
+          this.hrac1.setText(Integer.toString(hraN.getHrac1().getKameny()));
+          this.hrac2.setText(Integer.toString(hraN.getHrac2().getKameny()));
+      }
+      
+      public void oznac() {
+          if(this.hraN.getHraje().equals(this.hraN.getHrac1().getJmeno())) {
+              this.txVyber1.setForeground(Color.RED);
+              this.txVyber2.setForeground(Color.BLACK);
+          }
+          else {
+              this.txVyber2.setForeground(Color.RED);
+              this.txVyber1.setForeground(Color.BLACK);
+          }
+      }
+      
      public void vytvorS() {
          
            this.sirka = 50; 
@@ -269,6 +317,8 @@ public class Menu extends JFrame{
             if((this.index%8) == 0) {
             this.pom = !this.pom;
             }
+            Border br = new LineBorder(Color.BLACK, 1);
+            pol.setBorder(br);
             this.polHry[i][q] = pol;
             //přidání do labelu
             this.kontejner.add(pol);
@@ -286,10 +336,11 @@ public class Menu extends JFrame{
            kontejner.repaint(); 
            kontejner.setBackground(Color.getHSBColor(30, 50, 20));
            
-           this.txVyber = new JLabel("Hráč:"+hraN.getHrac1().getJmeno());
-           this.txVyber.setBounds(10, 10, 150, 30);
-           this.txVyber.setFont(new Font("Serif", Font.CENTER_BASELINE, 18));
-           this.kontejner.add(this.txVyber);
+           
+           this.txVyber1 = new JLabel("Hráč:"+hraN.getHrac1().getJmeno());
+           this.txVyber1.setBounds(10, 10, 150, 30);
+           this.txVyber1.setFont(new Font("Serif", Font.CENTER_BASELINE, 18));
+           this.kontejner.add(this.txVyber1);
            
            this.txVyber = new JLabel("Kamenů:");
            this.txVyber.setBounds(10, 40, 100, 30);
@@ -302,10 +353,10 @@ public class Menu extends JFrame{
            this.hrac1.setEditable(false);
            this.kontejner.add(this.hrac1);
            
-           this.txVyber = new JLabel("Hráč:"+hraN.getHrac2().getJmeno());
-           this.txVyber.setBounds(10, 500, 150, 30);
-           this.txVyber.setFont(new Font("Serif", Font.CENTER_BASELINE, 18));
-           this.kontejner.add(this.txVyber);
+           this.txVyber2 = new JLabel("Hráč:"+hraN.getHrac2().getJmeno());
+           this.txVyber2.setBounds(10, 500, 150, 30);
+           this.txVyber2.setFont(new Font("Serif", Font.CENTER_BASELINE, 18));
+           this.kontejner.add(this.txVyber2);
            
            this.txVyber = new JLabel("Kamenů:");
            this.txVyber.setBounds(10, 530, 100, 30);

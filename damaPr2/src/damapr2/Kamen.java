@@ -4,6 +4,8 @@
  */
 package damapr2;
 
+import java.awt.Color;
+
 /**
  *
  * @author Misa
@@ -11,12 +13,22 @@ package damapr2;
 public class Kamen extends Policko{
 
     private Hrac koho;
+    private boolean dama; 
 
     private Kamen[][] kde;
-    public Kamen(int x, int y, Hrac koho) {
+    public Kamen(int x, int y, Hrac koho, boolean dam) {
         super(x,y);
         this.koho = koho;
         this.setBarva(koho.getBarva());
+        this.dama = dam;
+    }
+
+    public boolean isDama() {
+        return dama;
+    }
+
+    public void setDama(boolean dama) {
+        this.dama = dama;
     }
 
     public void posunSe (Kamen [] [] kde,Policko kam) {
@@ -31,7 +43,8 @@ public class Kamen extends Policko{
     public Hrac getKoho() {
         return koho;
     }
-    
+
+   
     
     
 }
